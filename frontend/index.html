@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Brain Tumor AI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>🧠 Brain Tumor Detection</h1>
+
+    <div class="upload-box">
+        <input type="file" id="imageInput">
+        <button onclick="uploadImage()">Analyze MRI</button>
+    </div>
+
+    <div class="card">
+        <img id="preview" />
+        <h2 id="result"></h2>
+        <div id="confidence-bar">
+            <div id="confidence-fill"></div>
+        </div>
+        <p id="confidence-text"></p>
+    </div>
+
+    <div class="card">
+        <h3>🧠 Explainable AI (Heatmap)</h3>
+        <img id="heatmap" />
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
