@@ -1,34 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Brain Tumor AI</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Tumor Detection AI</title>
+
     <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
 
+<div class="background"></div>
+
 <div class="container">
-    <h1>🧠 Brain Tumor Detection</h1>
 
-    <div class="upload-box">
+    <div class="header">
+
+        <h1>🧠 Brain Tumor Detection</h1>
+
+        <p>
+            AI-Powered MRI Analysis using Deep Learning & Explainable AI (Grad-CAM)
+        </p>
+
+    </div>
+
+
+    <div class="upload-card">
+
         <input type="file" id="imageInput">
-        <button onclick="uploadImage()">Analyze MRI</button>
+
+        <button onclick="uploadImage()">
+            🔍 Analyze MRI
+        </button>
+
     </div>
 
-    <div class="card">
-        <img id="preview" />
-        <h2 id="result"></h2>
-        <div id="confidence-bar">
-            <div id="confidence-fill"></div>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <h2>Uploaded MRI</h2>
+
+            <img id="preview">
+
         </div>
-        <p id="confidence-text"></p>
+
+        <div class="card">
+
+            <h2>Prediction Result</h2>
+
+            <div class="result-box">
+
+                <h1 id="result">Waiting...</h1>
+
+                <div class="progress">
+
+                    <div id="confidence-fill"></div>
+
+                </div>
+
+                <p id="confidence-text">Confidence: 0%</p>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="card">
-        <h3>🧠 Explainable AI (Heatmap)</h3>
-        <img id="heatmap" />
+
+    <div class="heatmap-card">
+
+        <h2>🧠 Explainable AI (Grad-CAM)</h2>
+
+        <img id="heatmap">
+
     </div>
+
+
+    <footer>
+
+        Developed using CNN • MobileNetV2 • Flask • Grad-CAM
+
+    </footer>
+
 </div>
 
 <script src="script.js"></script>
+
 </body>
+
 </html>
