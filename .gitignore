@@ -3,3 +3,5 @@ tf_env/
 __pycache__/
 *.pyc
 .vscode/
+.env
+backend.zip
