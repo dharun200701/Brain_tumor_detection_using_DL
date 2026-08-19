@@ -1,257 +1,360 @@
-# 🧠 Brain Tumor Detection Using Deep Learning and Explainable AI
+# 🧠 Brain Tumor Detection & AI Assistant
 
-## 📌 Project Overview
+An AI-powered web application for **brain tumor image analysis** with an integrated **AI chatbot assistant**. The application allows users to upload brain MRI images for tumor prediction and interact with an AI assistant for general information and guidance.
 
-Brain tumors are among the most critical neurological disorders that require early and accurate diagnosis. This project presents an AI-powered system that automatically detects brain tumors from MRI images using a Convolutional Neural Network (CNN) with MobileNetV2 Transfer Learning. The system also integrates Explainable AI (Grad-CAM) to visualize the regions that influenced the model's prediction.
+> **Disclaimer:** This project is intended for educational and research purposes only. It is not a substitute for professional medical diagnosis or treatment.
 
-The application is deployed as a web-based system using Flask, allowing users to upload MRI images and receive real-time predictions along with visual explanations.
+## ✨ Features
 
----
+* 🧠 **Brain Tumor Detection**
 
-## 🎯 Objectives
+  * Upload a brain MRI image.
+  * Analyze the uploaded image using the trained detection model.
+  * Display the prediction/result through the web interface.
 
-* Detect brain tumors from MRI images automatically.
-* Improve diagnostic accuracy using deep learning.
-* Provide real-time prediction through a web application.
-* Integrate Explainable AI (Grad-CAM) for transparency.
-* Assist medical professionals in decision-making.
+* 🤖 **AI Chatbot**
 
----
+  * Integrated with the **Groq API**.
+  * Provides AI-generated responses to user questions.
+  * Designed to assist with general brain-tumor-related information.
 
-## 🏗️ System Architecture
+* 🖼️ **Image Upload**
 
-MRI Image Input
+  * Supports uploading MRI images directly from the frontend.
+  * Backend processes the uploaded image and returns the result.
 
-↓
+* 🌐 **Web Interface**
 
-Image Preprocessing
+  * Simple and responsive frontend.
+  * Built using HTML, CSS, and JavaScript.
 
-↓
+* 🔌 **Flask Backend**
 
-MobileNetV2 Feature Extraction
+  * REST API for frontend/backend communication.
+  * Handles image uploads and AI chatbot requests.
 
-↓
-
-Custom CNN Layers
-
-↓
-
-Tumor / No Tumor Classification
-
-↓
-
-Grad-CAM Heatmap Generation
-
-↓
-
-Web Application Output
-
----
-
-## 📂 Dataset Description
-
-The dataset consists of MRI brain scan images categorized into two classes:
-
-* Tumor
-* No Tumor
-
-Dataset Structure:
-
-dataset/
-
-├── Training/
-
-│ ├── tumor/
-
-│ └── no_tumor/
-
-│
-
-└── Testing/
-
-├── tumor/
-
-└── no_tumor/
-
-Images are resized to 224 × 224 pixels and normalized before training.
-
----
-
-## 🧠 Model Architecture
-
-### Pre-trained Model
-
-* MobileNetV2 (Transfer Learning)
-
-### Custom Layers
-
-1. GlobalAveragePooling2D
-2. Dense Layer (128 neurons, ReLU)
-3. Dropout Layer (0.5)
-4. Output Layer (Sigmoid)
-
-### Compilation Parameters
-
-Optimizer:
-
-* Adam
-
-Loss Function:
-
-* Binary Crossentropy
-
-Metric:
-
-* Accuracy
-
----
-
-## ⚙️ Technologies Used
-
-### Programming Language
-
-* Python
-
-### Frameworks & Libraries
-
-* TensorFlow / Keras
-* NumPy
-* Pandas
-* OpenCV
-* Matplotlib
-* Flask
-* Pillow
-* Scikit-learn
+## 🛠️ Technologies Used
 
 ### Frontend
 
-* HTML
-* CSS
+* HTML5
+* CSS3
 * JavaScript
 
 ### Backend
 
-* Flask REST API
+* Python
+* Flask
+* Flask-CORS
 
----
+### AI
+
+* Brain tumor detection model
+* Groq API
+* Large Language Model (LLM)
+
+### Other
+
+* Git & GitHub
+* REST API
+* JSON
+
+## 📁 Project Structure
+
+```text
+brain_tumor/
+│
+├── app.py                  # Flask backend application
+├── requirements.txt        # Python dependencies
+├── .gitignore              # Git ignored files
+├── README.md               # Project documentation
+│
+└── frontend/
+    ├── index.html          # Main web page
+    ├── script.js           # Frontend JavaScript
+    └── style.css           # Frontend styling
+```
+
+## ⚙️ Prerequisites
+
+Make sure the following are installed:
+
+* Python 3.9+
+* Git
+* A Groq API key
+
+Check Python installation:
+
+```bash
+python --version
+```
+
+Check Git installation:
+
+```bash
+git --version
+```
 
 ## 🚀 Installation
 
-### Create Virtual Environment
+### 1. Clone the Repository
+
+```bash
+git clone <YOUR_GITHUB_REPOSITORY_URL>
+cd brain_tumor
+```
+
+### 2. Create a Virtual Environment
 
 Windows:
 
-python -m venv tf_env
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
 
-tf_env\Scripts\activate
+macOS/Linux:
 
-### Install Dependencies
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
 
-pip install tensorflow flask flask-cors numpy pillow matplotlib opencv-python scikit-learn
+### 3. Install Dependencies
 
----
+```bash
+pip install -r requirements.txt
+```
 
-## ▶️ Running the Project
+If `requirements.txt` has not been created yet, install the required packages manually:
 
-### Step 1: Train the Model
+```bash
+pip install flask flask-cors groq
+```
 
-python train_model.py
+## 🔐 Environment Variables
 
-This generates:
+Create a `.env` file in the project root:
 
-brain_tumor_model.h5
+```text
+GROQ_API_KEY=your_groq_api_key_here
+```
 
-Move the model into:
+**Never upload your API key to GitHub.**
 
-backend/model/
+Make sure `.env` is included in `.gitignore`:
 
-### Step 2: Start Backend
+```text
+.env
+venv/
+__pycache__/
+*.pyc
+```
 
-cd backend
+## ▶️ Running the Application
 
+Start the Flask server:
+
+```bash
 python app.py
+```
 
-Server runs at:
+The backend will normally run at:
 
+```text
 http://127.0.0.1:5000
+```
 
-### Step 3: Launch Frontend
+Open the frontend in your browser or access it through the Flask application, depending on how the project is configured.
 
-Open:
+## 🔄 Application Workflow
 
-frontend/index.html
+```text
+User
+ │
+ ├── Upload MRI Image
+ │        │
+ │        ▼
+ │   Flask Backend
+ │        │
+ │        ▼
+ │   Tumor Detection Model
+ │        │
+ │        ▼
+ │   Prediction Result
+ │
+ └── Ask AI Question
+          │
+          ▼
+     Flask Backend
+          │
+          ▼
+       Groq API
+          │
+          ▼
+      AI Response
+```
 
-or use VS Code Live Server.
+## 🧠 Brain Tumor Detection
+
+The image-analysis component accepts an MRI image from the user and sends it to the backend for processing.
+
+The backend then:
+
+1. Receives the uploaded image.
+2. Validates/processes the image.
+3. Passes the image to the detection model.
+4. Obtains the prediction.
+5. Returns the result to the frontend.
+6. Displays the prediction to the user.
+
+## 🤖 AI Chatbot
+
+The chatbot communicates with the Groq API through the Flask backend.
+
+The general flow is:
+
+```text
+Frontend
+   │
+   │ User message
+   ▼
+Flask API
+   │
+   │ API request
+   ▼
+Groq
+   │
+   │ AI response
+   ▼
+Flask API
+   │
+   ▼
+Frontend Chatbot
+```
+
+The Groq API key should remain on the **backend** and should never be exposed in frontend JavaScript.
+
+## 🔗 API Endpoints
+
+The exact endpoints depend on the current implementation in `app.py`.
+
+Typical endpoints include:
+
+| Method | Endpoint   | Purpose                                |
+| ------ | ---------- | -------------------------------------- |
+| `GET`  | `/`        | Load the application                   |
+| `POST` | `/predict` | Upload MRI image and obtain prediction |
+| `POST` | `/chat`    | Send a message to the AI chatbot       |
+
+## 🧪 Testing
+
+Start the backend:
+
+```bash
+python app.py
+```
+
+Then test the application by:
+
+1. Opening the web interface.
+2. Uploading a valid MRI image.
+3. Checking the prediction result.
+4. Sending a message through the chatbot.
+5. Checking whether the AI response is displayed correctly.
+
+## 🐛 Troubleshooting
+
+### Flask server does not start
+
+Check that the virtual environment is activated and dependencies are installed:
+
+```bash
+pip install -r requirements.txt
+```
+
+### Groq chatbot is not responding
+
+Check that your API key is correctly configured:
+
+```text
+GROQ_API_KEY=your_groq_api_key_here
+```
+
+Also make sure the API key is not accidentally committed to GitHub.
+
+### Image upload fails
+
+Check:
+
+* The selected file is a valid image.
+* The frontend is sending the request to the correct backend endpoint.
+* Flask is running.
+* CORS configuration is correct if frontend and backend are running separately.
+
+## 🔒 Security
+
+* Never commit `.env` files.
+* Never expose the Groq API key in frontend JavaScript.
+* Do not upload private medical images to public repositories.
+* Validate uploaded files on the backend.
+* Use HTTPS when deploying the application publicly.
+
+## ⚠️ Medical Disclaimer
+
+This application is a **software/AI project for educational and research purposes**.
+
+The predictions and chatbot responses should **not be considered medical advice, diagnosis, or treatment recommendations**. Always consult a qualified medical professional for medical decisions.
+
+## 🔮 Future Improvements
+
+* Improve tumor classification accuracy.
+* Add confidence scores and visual explanations.
+* Add Grad-CAM/heatmap visualization.
+* Improve MRI preprocessing.
+* Add support for additional tumor categories.
+* Add user authentication.
+* Store prediction history securely.
+* Improve chatbot medical safety and response quality.
+* Deploy the application to a cloud platform.
+* Add automated model evaluation and testing.
+
+## 👨‍💻 Development
+
+To check the current Git status:
+
+```bash
+git status
+```
+
+Add changes:
+
+```bash
+git add .
+```
+
+Commit changes:
+
+```bash
+git commit -m "Update brain tumor detection and chatbot"
+```
+
+Push changes:
+
+```bash
+git push origin main
+```
+
+## 📄 License
+
+This project is intended for educational and research purposes. Add an appropriate open-source license if you plan to distribute the project publicly.
+
+## ⭐ Acknowledgements
+
+* Flask for the backend framework.
+* Groq for the AI API.
+* Open-source machine learning and medical-imaging resources used during development.
 
 ---
 
-## 🔍 Features
-
-* MRI Image Upload
-* Brain Tumor Detection
-* Confidence Score Display
-* Grad-CAM Heatmap Visualization
-* Real-Time Prediction
-* User-Friendly Interface
-
----
-
-## 📊 Performance Metrics
-
-| Metric    | Value  |
-| --------- | ------ |
-| Accuracy  | 94.66% |
-| Loss      | 0.1707 |
-| Precision | 95%    |
-| Recall    | 94%    |
-| F1-Score  | 94.5%  |
-
----
-
-## 🧪 Explainable AI (Grad-CAM)
-
-Grad-CAM (Gradient-weighted Class Activation Mapping) highlights important regions in MRI images that contribute to the model's prediction.
-
-Benefits:
-
-* Improves transparency
-* Enhances trust in AI predictions
-* Assists medical interpretation
-
----
-
-## 📈 Results Achieved
-
-* Successfully classified MRI images into Tumor and No Tumor categories.
-* Achieved 94.66% classification accuracy.
-* Implemented Explainable AI using Grad-CAM.
-* Developed a real-time web application for prediction.
-* Reduced dependency on manual image analysis.
-
----
-
-## 🔮 Future Enhancements
-
-* Multi-class brain tumor classification
-* Cloud deployment
-* Patient report generation (PDF)
-* Integration with hospital management systems
-* Advanced explainable AI techniques
-
----
-
-## 📚 References
-
-1. The Cancer Imaging Archive (TCIA)
-2. TensorFlow Documentation
-3. Scikit-learn Documentation
-4. Deep Learning by Goodfellow, Bengio, and Courville
-5. Grad-CAM Research Paper (Selvaraju et al., 2017)
-
----
-
-## 👨‍💻 Author
-
-Brain Tumor Detection Using Deep Learning and Explainable AI
-
-Academic Mini/Major Project
+**Brain Tumor Detection & AI Assistant** — Combining medical image analysis with an AI-powered conversational assistant.
